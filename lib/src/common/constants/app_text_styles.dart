@@ -6,6 +6,9 @@ class AppTextStyles {
   static TextStyle bigText = const TextStyle(
       fontFamily: 'Roboto', fontSize: 50, fontWeight: FontWeight.w700);
 
+  static TextStyle titleText20 = const TextStyle(
+      fontFamily: 'Roboto', fontSize: 20, fontWeight: FontWeight.w700);
+  
   static TextStyle mediumText = const TextStyle(
       fontFamily: 'Roboto', fontSize: 36, fontWeight: FontWeight.w700);
 

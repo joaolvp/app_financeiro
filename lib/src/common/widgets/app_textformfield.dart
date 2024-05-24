@@ -1,5 +1,4 @@
-
-import 'package:app_financeiro/src/common/constants/app_colors.dart';
+import 'package:app_financeiro/src/common/constants/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -13,7 +12,7 @@ class AppTextformfield extends StatefulWidget {
   final List<TextInputFormatter>? inputFormatters;
 
   const AppTextformfield({
-    Key? key,
+    super.key,
     required this.label,
     this.controller,
     this.obscureText = false,
@@ -21,7 +20,7 @@ class AppTextformfield extends StatefulWidget {
     this.onChanged, 
     this.helperText, 
     this.inputFormatters,
-  }) : super(key: key);
+  });
 
   @override
   State<AppTextformfield> createState() => _AppTextformfieldState();
@@ -40,6 +39,7 @@ class _AppTextformfieldState extends State<AppTextformfield> {
 
   @override
   Widget build(BuildContext context) {
+    ColorScheme colorContext = Theme.of(context).colorScheme;
     return TextFormField(
       controller: widget.controller,
       inputFormatters: widget.inputFormatters,
@@ -57,28 +57,27 @@ class _AppTextformfieldState extends State<AppTextformfield> {
         }
       },
       onTapOutside: (value) => FocusScope.of(context).unfocus(),
-      //cursorColor: AppColors.grey,
-      style: const TextStyle(color: AppColors.grey, fontSize: 18),
+      style: TextStyle(color: colorContext.tertiary, fontSize: 18),
       decoration: InputDecoration(
           helperText: _helperText,
-          helperMaxLines: 2,
-          helperStyle: const TextStyle(color: AppColors.smokyBlack),
+          helperMaxLines: 3,
+          helperStyle: AppTextStyles.smallText13.copyWith(color: colorContext.tertiary),
           isDense: true,
           labelText: widget.label,
-          labelStyle: const TextStyle(color: Colors.grey),
-          floatingLabelStyle: const TextStyle(color: Colors.grey),
+          labelStyle: TextStyle(color: colorContext.tertiary),
+          floatingLabelStyle: TextStyle(color: colorContext.tertiary),
           errorStyle: const TextStyle(color: Colors.redAccent),
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
-              borderSide: const BorderSide(color: AppColors.smokyBlack)),
+              borderSide: BorderSide(color: colorContext.tertiary)),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
-              borderSide: const BorderSide(color: AppColors.smokyBlack)),
+              borderSide: BorderSide(color: colorContext.tertiary)),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
-              borderSide: const BorderSide(color: AppColors.smokyBlack)),
+              borderSide: BorderSide(color: colorContext.tertiary)),
           filled: true,
-          fillColor: AppColors.white,
+          fillColor: colorContext.secondary,
           suffixIcon: Visibility(
             visible: widget.obscureText,
             child: InkWell(
@@ -88,12 +87,12 @@ class _AppTextformfieldState extends State<AppTextformfield> {
                 });
               },
               child: _obscure == false
-                  ? const Icon(
+                  ? Icon(
                       Icons.visibility_off,
-                      color: AppColors.grey,
+                      color: colorContext.tertiary,
                     )
-                  : const Icon(Icons.visibility,
-                      color: AppColors.grey),
+                  : Icon(Icons.visibility,
+                      color: colorContext.tertiary),
             ),
           )),
     );

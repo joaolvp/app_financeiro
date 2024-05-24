@@ -1,17 +1,17 @@
 import 'package:app_financeiro/src/common/constants/app_colors.dart';
 import 'package:app_financeiro/src/common/constants/app_text_styles.dart';
+import 'package:app_financeiro/src/common/constants/routes.dart';
 import 'package:app_financeiro/src/common/utils/validator.dart';
 import 'package:app_financeiro/src/common/widgets/app_textformfield.dart';
 import 'package:app_financeiro/src/common/widgets/google_button.dart';
 import 'package:app_financeiro/src/common/widgets/primary_button.dart';
-import 'package:flutter/painting.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import './login_controller.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -20,6 +20,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
+    ColorScheme colorContext = Theme.of(context).colorScheme;
     LoginController controller = Get.find();
     final _formKey = GlobalKey<FormState>();
     final _emailController = TextEditingController();
@@ -33,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
     }
 
     return Scaffold(
-        backgroundColor: AppColors.white,
+        backgroundColor: colorContext.background,
         body: SafeArea(
             child: SingleChildScrollView(
           child: SizedBox(
@@ -46,21 +47,11 @@ class _LoginPageState extends State<LoginPage> {
                     key: _formKey,
                     child: Column(
                       children: [
-                        /* SizedBox(
-                          height: Get.height * 0.05,
-                        ), */
-                        /* Image.asset(
-                          'assets/images/login.png',
-                          height: Get.height * 0.3,
-                        ), */
                         SvgPicture.asset(
                           'assets/images/login.svg',
-                          //semanticsLabel: 'Acme Logo',
                           height: Get.height * 0.4,
                         ),
-                        SizedBox(
-                          height: Get.height * 0.04,
-                        ),
+
                         AppTextformfield(
                           label: 'E-mail',
                           controller: _emailController,
@@ -83,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
                         PrimaryButton(
                             text: 'Entrar',
                             margin: EdgeInsets.zero,
-                            function: () {}),
+                            function: () => Get.offAllNamed(Routes.home)),
                         Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -95,19 +86,19 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                               )
                             ]),
-                        GoogleButton(),
+                        GoogleButton(callback: () => Get.offAllNamed(Routes.home),),
                         SizedBox(
                           height: Get.height * 0.01,
                         ),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () => Get.toNamed(Routes.register),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
                                 '''Não tem uma conta? ''',
                                 style: AppTextStyles.smallTextW500
-                                    .copyWith(color: AppColors.grey),
+                                    .copyWith(color: colorContext.tertiary),
                               ),
                               Text(
                                 'Cadastre-se',

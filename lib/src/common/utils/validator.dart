@@ -4,10 +4,10 @@ class Validator {
   static String? validateName(String? value) {
     final condition = RegExp(r"^[A-Z]([a-zA-Z]|\.| |-|')+$");
     if (value != null && value.isEmpty) {
-      return 'This field cannot be empty.';
+      return 'Esse campo não pode ser vazio.';
     }
     if (value != null && !condition.hasMatch(value)) {
-      return 'Invalid name. Enter a valid name.';
+      return 'Nome inválido.';
     }
     return null;
   }
@@ -16,28 +16,28 @@ class Validator {
     final condition = RegExp(
         r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
     if (value != null && value.isEmpty) {
-      return 'This field cannot be empty.';
+      return 'Esse campo não pode ser vazio.';
     }
     if (value != null && !condition.hasMatch(value)) {
-      return 'Invalid email. Enter a valid email address.';
+      return 'E-mail inválido';
     }
     return null;
   }
 
   static String? validatePassword(String? value){
-    final condition = RegExp(r"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$");
+    final condition = RegExp(r"""^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$""");
     if(value != null && value.isEmpty){
-      return 'This field cannot be empty.';
+      return 'Esse campo não pode ser vazio.';
     }
     if(value != null && !condition.hasMatch(value)){
-      return 'Invalid password. Enter a valid password.';
+      return 'Senha inválida.';
     }
     return null;
   }
 
   static String? validateConfirmPassword(String first, String? second){
     if(first != second){
-      return 'The passwords are different.';
+      return 'As senhas são diferentes.';
     }
     return null;
   }

@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1032221157256",
+    "project_id": "app-financeiro-c8cfc",
+    "storage_bucket": "app-financeiro-c8cfc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1032221157256:android:f8fe016572c977cb497c3d",
+        "android_client_info": {
+          "package_name": "com.example.app_financeiro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1032221157256-kbl1325puucaij0f5vnp4o2la9363hv4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDL8hamVu3CSrFDY8ETnepTOns5GwnmLx4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1032221157256-kbl1325puucaij0f5vnp4o2la9363hv4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1032221157256-3s707obj5rcsp1s3k1dae24la6cq6qdv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.appFinanceiro"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
