@@ -18,7 +18,7 @@ class AppColors {
 
   static const Color chiliRed = Color(0xFFF95B51);
 
-  static const Color smokyBlack = Color(0xff1D1A05);
+  //static const Color smokyBlack = Color(0xff1D1A05);
 
   static const Color black = Color(0xff000000);
 

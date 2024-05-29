@@ -2,7 +2,7 @@ class Validator {
   Validator._();
 
   static String? validateName(String? value) {
-    final condition = RegExp(r"^[A-Z]([a-zA-Z]|\.| |-|')+$");
+    final condition = RegExp(r"^[A-Za-zÀ-ÖØ-öø-ÿ' .-]{2,}$");
     if (value != null && value.isEmpty) {
       return 'Esse campo não pode ser vazio.';
     }

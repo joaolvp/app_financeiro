@@ -1,23 +1,8 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import './splash_controller.dart';
 
-class SplashPage extends StatefulWidget {
+class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
-
-  @override
-  State<SplashPage> createState() => _SplashPageState();
-}
-
-class _SplashPageState extends State<SplashPage> {
-  SplashController controller = Get.find();
-  ThemeMode themeMode = ThemeMode.system;
-
-  @override
-  void initState() {
-    controller.teste();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {

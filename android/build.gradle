@@ -1,3 +1,9 @@
+project.ext {
+  set('FlutterFire', [
+    FirebaseSDKVersion: "32.5.0",
+  ])
+}
+
 allprojects {
     repositories {
         google()

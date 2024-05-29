@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:app_financeiro/src/common/constants/app_colors.dart';
 import 'package:app_financeiro/src/common/constants/app_text_styles.dart';
 import 'package:app_financeiro/src/common/constants/routes.dart';
@@ -8,7 +10,7 @@ import 'package:app_financeiro/src/common/widgets/primary_button.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import './login_controller.dart';
+import 'login_controller.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -74,7 +76,15 @@ class _LoginPageState extends State<LoginPage> {
                         PrimaryButton(
                             text: 'Entrar',
                             margin: EdgeInsets.zero,
-                            function: () => Get.offAllNamed(Routes.home)),
+                            function: () {
+                              final valid = _formKey.currentState!.validate();
+                              //final valid = true;
+                              if (valid) {
+                                controller.loginEmail(email: _emailController.text, password: _passwordController.text);
+                              } else {
+                                log('erro ao logar');
+                              }
+                            }),
                         Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -86,7 +96,7 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                               )
                             ]),
-                        GoogleButton(callback: () => Get.offAllNamed(Routes.home),),
+                        GoogleButton(callback: () => controller.loginGoogle(),),
                         SizedBox(
                           height: Get.height * 0.01,
                         ),

@@ -1,7 +1,8 @@
+import 'package:app_financeiro/src/common/application/bindings/application_bindings.dart';
 import 'package:app_financeiro/src/common/constants/app_theme_data.dart';
 import 'package:app_financeiro/src/features/home/home_module.dart';
-import 'package:app_financeiro/src/features/login/login_module.dart';
-import 'package:app_financeiro/src/features/register/register_module.dart';
+import 'package:app_financeiro/src/features/auth/login/login_module.dart';
+import 'package:app_financeiro/src/features/auth/register/register_module.dart';
 import 'package:app_financeiro/src/features/splash/splash_module.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,7 +20,7 @@ class App extends StatelessWidget {
     );
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      //initialBinding: LoginBindings(),
+      initialBinding: ApplicationBindings(),
       theme: AppThemeData.lightMode,
       darkTheme: AppThemeData.darkMode,
       //home: const LoginPage(),
