@@ -3,13 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class AppTextformfield extends StatefulWidget {
-  final String label;
+  final String? label;
   final TextEditingController? controller;
   final bool obscureText;
   final FormFieldValidator<String>? validator;
   final ValueChanged<String>? onChanged;
   final String? helperText;
   final List<TextInputFormatter>? inputFormatters;
+  final TextInputType? keyboardType;
+  final VoidCallback? onTapFunction;
+  final bool read ;
+  final String? hintText;
 
   const AppTextformfield({
     super.key,
@@ -19,7 +23,11 @@ class AppTextformfield extends StatefulWidget {
     this.validator,
     this.onChanged, 
     this.helperText, 
-    this.inputFormatters,
+    this.inputFormatters, 
+    this.keyboardType, 
+    this.onTapFunction,
+    this.read = false,
+    this.hintText,
   });
 
   @override
@@ -41,8 +49,10 @@ class _AppTextformfieldState extends State<AppTextformfield> {
   Widget build(BuildContext context) {
     ColorScheme colorContext = Theme.of(context).colorScheme;
     return TextFormField(
+      onTap: widget.onTapFunction,
       controller: widget.controller,
       inputFormatters: widget.inputFormatters,
+      keyboardType: widget.keyboardType,
       obscureText: widget.obscureText == true ? _obscure : false,
       validator: widget.validator,
       onChanged: (value){
@@ -56,6 +66,7 @@ class _AppTextformfieldState extends State<AppTextformfield> {
           });
         }
       },
+      readOnly: widget.read,
       onTapOutside: (value) => FocusScope.of(context).unfocus(),
       style: TextStyle(color: colorContext.tertiary, fontSize: 18),
       decoration: InputDecoration(
@@ -63,11 +74,14 @@ class _AppTextformfieldState extends State<AppTextformfield> {
           helperMaxLines: 3,
           helperStyle: AppTextStyles.smallText13.copyWith(color: colorContext.tertiary),
           isDense: true,
+          hintText: widget.hintText,
+          hintStyle: TextStyle(color: colorContext.tertiary),
           labelText: widget.label,
           labelStyle: TextStyle(color: colorContext.tertiary),
           floatingLabelStyle: TextStyle(color: colorContext.tertiary),
           errorStyle: const TextStyle(color: Colors.redAccent),
           border: OutlineInputBorder(
+
               borderRadius: BorderRadius.circular(10),
               borderSide: BorderSide(color: colorContext.tertiary)),
           enabledBorder: OutlineInputBorder(

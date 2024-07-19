@@ -3,9 +3,11 @@ import 'package:app_financeiro/src/common/constants/app_theme_data.dart';
 import 'package:app_financeiro/src/features/home/home_module.dart';
 import 'package:app_financeiro/src/features/auth/login/login_module.dart';
 import 'package:app_financeiro/src/features/auth/register/register_module.dart';
+import 'package:app_financeiro/src/features/new_value/new_value_module.dart';
 import 'package:app_financeiro/src/features/splash/splash_module.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 class App extends StatelessWidget {
@@ -19,6 +21,15 @@ class App extends StatelessWidget {
       ],
     );
     return GetMaterialApp(
+      localizationsDelegates: const [
+        GlobalWidgetsLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate
+      ],
+      supportedLocales: const [
+        Locale('en', 'US'), // Inglês
+        Locale('pt', 'BR'), // Português do Brasil
+      ],
+      locale: const Locale('pt', 'BR'),
       debugShowCheckedModeBanner: false,
       initialBinding: ApplicationBindings(),
       theme: AppThemeData.lightMode,
@@ -30,6 +41,7 @@ class App extends StatelessWidget {
         ...LoginModule().routers,
         ...RegisterModule().routers,
         ...HomeModule().routers,
+        ...NewValueModule().routers,
       ],
     );
   }

@@ -10,7 +10,7 @@ class AppThemeData {
   static ThemeData get lightMode => ThemeData(
         brightness: Brightness.light,
         colorScheme: const ColorScheme.light(
-            background: AppColors.white,
+            surface: AppColors.white,
             primary: AppColors.asparagus,
             secondary: AppColors.white,
             tertiary: AppColors.black),
@@ -21,7 +21,7 @@ class AppThemeData {
   static ThemeData get darkMode => ThemeData(
         brightness: Brightness.dark,
         colorScheme: const ColorScheme.dark(
-            background: AppColors.black,
+            surface: AppColors.blackBackground,
             primary: AppColors.asparagus,
             secondary: AppColors.grey,
             tertiary: AppColors.white),

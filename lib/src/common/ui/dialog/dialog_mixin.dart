@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 mixin DialogMixin on GetxController {
   void dialogListenner(Rxn<MessageModel> message) {
     ever<MessageModel?>(message, (model) {
-      print('entrou no dialog');
       if (model != null) {
         Get.defaultDialog(
             backgroundColor: AppColors.iceWhite,

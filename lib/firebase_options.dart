@@ -63,6 +63,9 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1032221157256',
     projectId: 'app-financeiro-c8cfc',
     storageBucket: 'app-financeiro-c8cfc.appspot.com',
+    androidClientId: '1032221157256-2usbkmj9r65161ovoit56c8svu1figor.apps.googleusercontent.com',
+    iosClientId: '1032221157256-3s707obj5rcsp1s3k1dae24la6cq6qdv.apps.googleusercontent.com',
     iosBundleId: 'com.example.appFinanceiro',
   );
+
 }

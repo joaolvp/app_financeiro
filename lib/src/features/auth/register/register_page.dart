@@ -1,12 +1,9 @@
 import 'dart:developer';
-
-import 'package:app_financeiro/src/common/constants/app_colors.dart';
 import 'package:app_financeiro/src/common/constants/app_text_styles.dart';
 import 'package:app_financeiro/src/common/utils/validator.dart';
 import 'package:app_financeiro/src/common/widgets/app_textformfield.dart';
 import 'package:app_financeiro/src/common/widgets/primary_button.dart';
 import 'package:app_financeiro/src/features/auth/register/register_controller.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 

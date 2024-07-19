@@ -20,23 +20,23 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  LoginController controller = Get.find();
+  final formKey = GlobalKey<FormState>();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     ColorScheme colorContext = Theme.of(context).colorScheme;
-    LoginController controller = Get.find();
-    final _formKey = GlobalKey<FormState>();
-    final _emailController = TextEditingController();
-    final _passwordController = TextEditingController();
-
-    @override
-    void dispose() {
-      _emailController.dispose();
-      _passwordController.dispose();
-      super.dispose();
-    }
 
     return Scaffold(
-        backgroundColor: colorContext.background,
+        backgroundColor: colorContext.surface,
         body: SafeArea(
             child: SingleChildScrollView(
           child: SizedBox(
@@ -46,24 +46,23 @@ class _LoginPageState extends State<LoginPage> {
                 Container(
                   margin: const EdgeInsets.symmetric(horizontal: 20),
                   child: Form(
-                    key: _formKey,
+                    key: formKey,
                     child: Column(
                       children: [
                         SvgPicture.asset(
                           'assets/images/login.svg',
                           height: Get.height * 0.4,
                         ),
-
                         AppTextformfield(
                           label: 'E-mail',
-                          controller: _emailController,
+                          controller: emailController,
                           validator: Validator.validateEmail,
                         ),
                         SizedBox(
                           height: Get.height * 0.02,
                         ),
                         AppTextformfield(
-                          controller: _passwordController,
+                          controller: passwordController,
                           label: 'Senha',
                           obscureText: true,
                           /* helperText:
@@ -77,10 +76,12 @@ class _LoginPageState extends State<LoginPage> {
                             text: 'Entrar',
                             margin: EdgeInsets.zero,
                             function: () {
-                              final valid = _formKey.currentState!.validate();
+                              final valid = formKey.currentState!.validate();
                               //final valid = true;
                               if (valid) {
-                                controller.loginEmail(email: _emailController.text, password: _passwordController.text);
+                                controller.loginEmail(
+                                    email: emailController.text,
+                                    password: passwordController.text);
                               } else {
                                 log('erro ao logar');
                               }
@@ -96,7 +97,9 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                               )
                             ]),
-                        GoogleButton(callback: () => controller.loginGoogle(),),
+                        GoogleButton(
+                          callback: () => controller.loginGoogle(),
+                        ),
                         SizedBox(
                           height: Get.height * 0.01,
                         ),

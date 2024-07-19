@@ -21,6 +21,7 @@ class AppColors {
   //static const Color smokyBlack = Color(0xff1D1A05);
 
   static const Color black = Color(0xff000000);
+  static const Color blackBackground = Color(0xff1c1c1c);
 
 
 
