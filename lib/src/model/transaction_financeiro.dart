@@ -7,6 +7,7 @@ class TransactionFinanceiro {
   final CategoryType category;
   final DateTime date;
   final bool received;
+  final DateTime created_at;
 
   TransactionFinanceiro({
     required this.type,
@@ -15,6 +16,7 @@ class TransactionFinanceiro {
     required this.category,
     required this.date,
     required this.received,
+    required this.created_at,
   });
 
   Map<String, dynamic> toMap() {
@@ -25,6 +27,7 @@ class TransactionFinanceiro {
       'category': category.type(), // Convert enum to string
       'date': date.millisecondsSinceEpoch,
       'received': received,
+      'created_at': created_at.millisecondsSinceEpoch,
     };
   }
 
@@ -36,6 +39,7 @@ class TransactionFinanceiro {
       category: CategoryTypeExtension.fromString(map['category'] as String),
       date: DateTime.fromMillisecondsSinceEpoch(map['date'] as int),
       received: map['received'] as bool,
+      created_at: DateTime.fromMillisecondsSinceEpoch(map['created_at'] as int),
     );
   }
 

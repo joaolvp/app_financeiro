@@ -7,14 +7,14 @@ class AuthService extends GetxService{
   User? user;
   
   void init()async{
-    await Future.delayed(const Duration(seconds: 2));
+    //await Future.delayed(const Duration(seconds: 2));
 
     FirebaseAuth.instance.authStateChanges().listen((User? user){
       this.user = user;
       if(user == null){
         Get.offAllNamed(Routes.login);
       }else{
-        Get.offAllNamed(Routes.home);
+        Get.offAllNamed(Routes.mainNavigation);
       }
     });
   }

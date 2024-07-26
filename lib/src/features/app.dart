@@ -1,9 +1,9 @@
 import 'package:app_financeiro/src/common/application/bindings/application_bindings.dart';
 import 'package:app_financeiro/src/common/constants/app_theme_data.dart';
-import 'package:app_financeiro/src/features/home/home_module.dart';
 import 'package:app_financeiro/src/features/auth/login/login_module.dart';
 import 'package:app_financeiro/src/features/auth/register/register_module.dart';
-import 'package:app_financeiro/src/features/new_value/new_value_module.dart';
+import 'package:app_financeiro/src/features/main_navigation/main_navigation_module.dart';
+import 'package:app_financeiro/src/features/value_transaction/value_transaction_module.dart';
 import 'package:app_financeiro/src/features/splash/splash_module.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -40,8 +40,9 @@ class App extends StatelessWidget {
         ...SplashModule().routers,
         ...LoginModule().routers,
         ...RegisterModule().routers,
-        ...HomeModule().routers,
-        ...NewValueModule().routers,
+        ...MainNavigationModule().routers,
+        ...ValueTransactionModule().routers,
+        
       ],
     );
   }

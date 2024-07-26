@@ -41,4 +41,11 @@ class Validator {
     }
     return null;
   }
+
+  static String? validateDescription(String? value){
+    if (value != null && value.isEmpty) {
+      return 'Descrição não pode ser vazia';
+    }
+    return null;
+  }
 }
