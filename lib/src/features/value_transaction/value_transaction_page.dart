@@ -95,6 +95,16 @@ class _ValueTransactionPageState extends State<ValueTransactionPage> {
   @override
   Widget build(BuildContext context) {
     ColorScheme colorContext = Theme.of(context).colorScheme;
+    var item = Get.arguments;
+    if(item != null){
+      selected = {item.type};
+      valueController.text = item.value.toString();
+      descriptionController.text = item.description;
+      _selectedDate = item.date;
+      dropdownValue = item.category;
+      isSwitched = item.received;
+      
+    }
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(

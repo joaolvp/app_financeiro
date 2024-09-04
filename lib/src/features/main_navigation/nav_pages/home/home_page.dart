@@ -17,6 +17,7 @@ class HomePage extends GetView<HomeController> {
           ? AppColors.chiliRed
           : Colors.green;
       return ListTile(
+        onTap: () => Get.toNamed(Routes.valueTransaction, arguments: item),
         contentPadding: const EdgeInsets.symmetric(horizontal: 8.0),
         leading: Container(
           decoration: BoxDecoration(
