@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:app_financeiro/src/common/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,6 +24,7 @@ mixin DialogMixin on GetxController {
             actions: [
               TextButton(
                 onPressed: () {
+                  log('dialogListenner');
                   Get.back();
                 },
                 style:

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:app_financeiro/src/common/constants/app_colors.dart';
 import 'package:app_financeiro/src/common/constants/app_text_styles.dart';
 import 'package:app_financeiro/src/common/constants/routes.dart';
@@ -17,7 +19,9 @@ class HomePage extends GetView<HomeController> {
           ? AppColors.chiliRed
           : Colors.green;
       return ListTile(
-        onTap: () => Get.toNamed(Routes.valueTransaction, arguments: item),
+        onTap: () { 
+          log(item.uid);
+          Get.toNamed(Routes.valueTransaction, arguments: item);},
         contentPadding: const EdgeInsets.symmetric(horizontal: 8.0),
         leading: Container(
           decoration: BoxDecoration(

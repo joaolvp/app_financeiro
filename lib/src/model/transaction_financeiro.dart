@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 class TransactionFinanceiro {
+  String uid;
   final TransactionType type;
   final num value;
   final String description;
@@ -10,6 +11,7 @@ class TransactionFinanceiro {
   final DateTime created_at;
 
   TransactionFinanceiro({
+    this.uid = '',
     required this.type,
     required this.value,
     required this.description,

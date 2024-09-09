@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:app_financeiro/src/common/constants/app_text_styles.dart';
 import 'package:app_financeiro/src/common/widgets/app_textformfield.dart';
 import 'package:app_financeiro/src/common/widgets/primary_button.dart';
@@ -97,6 +99,7 @@ class _ValueTransactionPageState extends State<ValueTransactionPage> {
     ColorScheme colorContext = Theme.of(context).colorScheme;
     var item = Get.arguments;
     if(item != null){
+      log('valor transavction uid ${item.uid}');
       selected = {item.type};
       valueController.text = item.value.toString();
       descriptionController.text = item.description;
@@ -228,14 +231,22 @@ class _ValueTransactionPageState extends State<ValueTransactionPage> {
                 ),
                 PrimaryButton(
                     text: 'Salvar', margin: EdgeInsets.zero, function: () async {
-                      var transaction = TransactionFinanceiro(type: selected.first, 
+                      var transaction = TransactionFinanceiro(
+                      uid: item != null ? item.uid : '',
+                      type: selected.first, 
                       value: num.parse(valueController.text), 
                       description: descriptionController.text, 
                       category: dropdownValue, 
                       date: _selectedDate!, 
                       received: isSwitched, 
                       created_at: DateTime.now());
+
+                      if(item != null){
+                        controller.editValue(transaction);
+                      }
                       controller.saveValue(transaction);
+
+                      
                     }),
               ],
             ),
