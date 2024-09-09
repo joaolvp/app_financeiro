@@ -18,13 +18,16 @@ class TransactionServiceImpl implements TransactionService{
       DocumentReference documentRef = FirebaseFirestore.instance.collection('user-transactions').doc(uid);
       QuerySnapshot querySnapshot = await documentRef.collection('transactions').get();
       List<QueryDocumentSnapshot> documents = querySnapshot.docs;
-
+      log('Documents é: $documents');
 
       DocumentSnapshot documentGeneralData = await documentRef.get();
+      log('Document General Data é: ${documentGeneralData.data()}');
       Object? generalData = documentGeneralData.data();
-      
+      log('General Data é: $generalData');
       var generalUserInfo = GeneralUserInfo.fromMap(generalData as Map<String, dynamic>);
+      log('General User Info é: $generalUserInfo');
       for (var doc in documents) {
+        log('${doc.id}');
         var transaction = model.TransactionFinanceiro.fromMap(doc.data() as Map<String, dynamic>);
         list.addAll({transaction});
       }
@@ -39,9 +42,10 @@ class TransactionServiceImpl implements TransactionService{
 
   @override
   Future<Either<Exception, Success<Exception, dynamic>>> saveTransaction(model.TransactionFinanceiro transaction) async{
-    //
     var uid = FirebaseAuth.instance.currentUser!.uid;
     CollectionReference collectionRef = FirebaseFirestore.instance.collection('user-transactions').doc(uid).collection('transactions');
+    log('$collectionRef');
+    log('${collectionRef.get()}');
     collectionRef.add(transaction.toMap());
     return Success(null);
   }
