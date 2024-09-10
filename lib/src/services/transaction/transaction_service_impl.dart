@@ -81,4 +81,21 @@ class TransactionServiceImpl implements TransactionService {
       return Failure(e);
     }
   }
+
+  @override
+  Future<Either<Exception, Success<Exception, dynamic>>> deleteTransaction(
+      String uid) async {
+    try {
+      var uidUser = FirebaseAuth.instance.currentUser!.uid;
+      FirebaseFirestore.instance
+          .collection('user-transactions')
+          .doc(uidUser)
+          .collection('transactions')
+          .doc(uid)
+          .delete();
+      return Success(null);
+    } on Exception catch (e) {
+      return Failure(e);
+    }
+  }
 }

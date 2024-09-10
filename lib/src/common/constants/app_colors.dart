@@ -15,6 +15,7 @@ class AppColors {
   static const Color lemonChiffon = Color(0xFFFFFBBD);
 
   static const Color fawn = Color(0xFFE6AA68);
+  static const Color darkGreen = Color.fromARGB(255, 106, 109, 105);
 
   static const Color chiliRed = Color(0xFFF95B51);
 

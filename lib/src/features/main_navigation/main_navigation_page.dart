@@ -18,7 +18,7 @@ class MainNavigationPage extends GetView<MainNavigationController> {
     return Scaffold(
       bottomNavigationBar: Obx(() {
         return BottomNavigationBar(
-          backgroundColor: AppColors.asparagus,
+          backgroundColor: AppColors.asparagus ,
           type: BottomNavigationBarType.fixed,
           items: const [
             BottomNavigationBarItem(

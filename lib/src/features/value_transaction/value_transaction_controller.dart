@@ -48,7 +48,7 @@ class ValueTransactionController extends GetxController with LoaderMixin, Dialog
   loading(false);
   switch(response){
       case Failure<Exception, Success<Exception, dynamic>>():
-        await message(MessageModel.error(title: 'Erro', message: 'Erro ao salvar edição', textButton: 'Fechar'));
+        message(MessageModel.error(title: 'Erro', message: 'Erro ao salvar edição', textButton: 'Fechar'));
       case Success<Exception, Success<Exception, dynamic>>():
         // TODO: Handle this case.
   }

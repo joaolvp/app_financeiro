@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:app_financeiro/src/common/constants/app_colors.dart';
 import 'package:app_financeiro/src/common/constants/app_text_styles.dart';
 import 'package:app_financeiro/src/common/widgets/app_textformfield.dart';
 import 'package:app_financeiro/src/common/widgets/primary_button.dart';
@@ -120,6 +121,17 @@ class _ValueTransactionPageState extends State<ValueTransactionPage> {
               children: [
                 Center(
                   child: SegmentedButton(
+                    style: ButtonStyle(backgroundColor: 
+                      WidgetStateProperty.resolveWith<Color>(
+   (Set<WidgetState> states) {
+      if (states.contains(WidgetState.selected)){
+        return AppColors.asparagus;
+      }
+      return colorContext.secondary;
+      //return Colors.red;
+    },
+ ),
+                    ),
                     segments: const [
                       ButtonSegment(
                           value: TransactionType.income,

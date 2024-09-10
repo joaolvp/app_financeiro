@@ -8,6 +8,7 @@ class AppThemeData {
         useMaterial3: true,
       );
   static ThemeData get lightMode => ThemeData(
+        unselectedWidgetColor: AppColors.grey,
         brightness: Brightness.light,
         colorScheme: const ColorScheme.light(
             surface: AppColors.white,

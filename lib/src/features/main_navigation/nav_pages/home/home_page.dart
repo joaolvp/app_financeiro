@@ -17,18 +17,44 @@ class HomePage extends GetView<HomeController> {
     var listTransactions = controller.userTransactions.map((item) {
       var color = item.type == TransactionType.expense
           ? AppColors.chiliRed
-          : Colors.green;
+          : AppColors.asparagus;
       return ListTile(
-        onTap: () { 
+        onTap: () {
+          showModalBottomSheet(
+              useRootNavigator: true,
+              context: context,
+              builder: (builder) {
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ListTile(
+                      onTap: () =>
+                          Get.toNamed(Routes.valueTransaction, arguments: item),
+                      leading: const Icon(Icons.edit),
+                      title: const Text('Editar'),
+                    ),
+                    ListTile(
+                      onTap: () async {
+                        controller.deleteTransaction(item.uid);
+                      },
+                      leading: const Icon(Icons.delete),
+                      title: const Text('Excluir'),
+                    ),
+                  ],
+                );
+              });
           log(item.uid);
-          Get.toNamed(Routes.valueTransaction, arguments: item);},
+          //Get.toNamed(Routes.valueTransaction, arguments: item);
+        },
         contentPadding: const EdgeInsets.symmetric(horizontal: 8.0),
         leading: Container(
           decoration: BoxDecoration(
               color: color,
               borderRadius: const BorderRadius.all(Radius.circular(25))),
           padding: const EdgeInsets.all(8.0),
-          child: const Icon(Icons.attach_money),
+          child: Icon(item.type == TransactionType.expense
+              ? Icons.trending_down
+              : Icons.trending_up),
         ),
         title: Text(
           item.description,
@@ -57,7 +83,9 @@ class HomePage extends GetView<HomeController> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        controller.nameUser.value.length > 1 ? 'Bem-vindo, ${controller.nameUser}' : 'Bem-vindo',
+                        controller.nameUser.value.length > 1
+                            ? 'Bem-vindo, ${controller.nameUser}'
+                            : 'Bem-vindo',
                         style: AppTextStyles.mediumText25,
                       ),
                       const SizedBox(
@@ -65,28 +93,35 @@ class HomePage extends GetView<HomeController> {
                       ),
                       Container(
                         decoration: BoxDecoration(
-                            color: AppColors.asparagus,
+                            gradient: const LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomCenter,
+                                colors: [
+                                  Colors.indigo,
+                                  AppColors.asparagus
+                                  
+                                ]),
+                            //color: AppColors.asparagus,
                             borderRadius: BorderRadius.circular(10)),
                         padding: const EdgeInsets.all(25),
                         child: Column(
                           children: [
-                            Row(
-                              children: [
-                                Text(
-                                  'Saldo em conta: ',
-                                  style: AppTextStyles.mediumText20,
-                                ),
-                                Text(
-                                  'R\$ ${controller.saldoEmConta} ',
-                                  style: AppTextStyles.mediumText20,
-                                ),
-                              ],
+                            Text(
+                              'R\$ ${controller.saldoEmConta} ',
+                              style: AppTextStyles.mediumText30,
+                            ),
+                            Text(
+                              'Saldo Total ',
+                              style: AppTextStyles.mediumText18,
+                            ),
+                            const SizedBox(
+                              height: 15,
                             ),
                             Row(
                               children: [
                                 const Icon(
-                                  Icons.arrow_upward,
-                                  color: Colors.black,
+                                  Icons.trending_up,
+                                  color: AppColors.asparagus,
                                   size: 30,
                                 ),
                                 Text(
@@ -106,8 +141,8 @@ class HomePage extends GetView<HomeController> {
                               //mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 const Icon(
-                                  Icons.arrow_downward,
-                                  color: Colors.black,
+                                  Icons.trending_down,
+                                  color: AppColors.chiliRed,
                                   size: 30,
                                 ),
                                 Text(
@@ -126,9 +161,12 @@ class HomePage extends GetView<HomeController> {
                     ],
                   ),
                   const SizedBox(
-                     height: 20,
+                    height: 20,
                   ),
-                  Text('Transações recentes', style:AppTextStyles.mediumText18,),
+                  Text(
+                    'Transações recentes',
+                    style: AppTextStyles.mediumText18,
+                  ),
                   ...listTransactions,
                 ],
               ),

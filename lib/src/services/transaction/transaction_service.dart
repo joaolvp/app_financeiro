@@ -6,4 +6,5 @@ abstract class TransactionService {
   Future<Either<Exception, GeneralUserInfo?>> getAllTransactions();
   Future<Either<Exception, Success>> saveTransaction(TransactionFinanceiro transaction);
   Future<Either<Exception, Success>> editTransaction(TransactionFinanceiro transaction);
+  Future<Either<Exception, Success>> deleteTransaction(String uid);
 }
