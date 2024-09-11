@@ -66,7 +66,7 @@ class ProfilePage extends GetView<ProfileController> {
                                         //color: AppColors.chiliRed,
                                       ),
                                       const SizedBox(
-                                        width: 5,
+                                        width: 15,
                                       ),
                                       Text(
                                         'Alterar e-mail',
@@ -79,7 +79,7 @@ class ProfilePage extends GetView<ProfileController> {
                               ],
                             ),
                             const SizedBox(
-                              height: 10,
+                              height: 15,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -95,7 +95,7 @@ class ProfilePage extends GetView<ProfileController> {
                                         //color: AppColors.chiliRed,
                                       ),
                                       const SizedBox(
-                                        width: 5,
+                                        width: 15,
                                       ),
                                       Text(
                                         'Alterar nome',
@@ -108,7 +108,7 @@ class ProfilePage extends GetView<ProfileController> {
                               ],
                             ),
                             const SizedBox(
-                              height: 10,
+                              height: 15,
                             ),
                           ],
                         )),
@@ -126,7 +126,7 @@ class ProfilePage extends GetView<ProfileController> {
                                 //color: AppColors.chiliRed,
                               ),
                               const SizedBox(
-                                width: 5,
+                                width: 15,
                               ),
                               Text(
                                 'Deletar conta',
@@ -139,7 +139,7 @@ class ProfilePage extends GetView<ProfileController> {
                       ],
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 15,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -155,7 +155,7 @@ class ProfilePage extends GetView<ProfileController> {
                                 //color: AppColors.chiliRed,
                               ),
                               const SizedBox(
-                                width: 5,
+                                width: 15,
                               ),
                               Text('Encerrar sessão',
                                   style: AppTextStyles.mediumText16
