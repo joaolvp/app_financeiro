@@ -6,11 +6,8 @@ import 'package:app_financeiro/src/common/widgets/app_textformfield.dart';
 import 'package:app_financeiro/src/common/widgets/primary_button.dart';
 import 'package:app_financeiro/src/features/value_transaction/value_transaction_controller.dart';
 import 'package:app_financeiro/src/model/transaction_financeiro.dart';
-import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-
 
 class ValueTransactionPage extends StatefulWidget {
   const ValueTransactionPage({super.key});
@@ -28,6 +25,28 @@ class _ValueTransactionPageState extends State<ValueTransactionPage> {
   TextEditingController descriptionController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   dynamic dropdownValue;
+
+  @override
+  void initState() {
+    getArguments();
+    super.initState();
+  }
+  var item = Get.arguments;
+
+  getArguments(){
+    if(item != null) {
+      log('valor transavction uid ${item.uid}');
+      selected = {item.type};
+      valueController.text = item.value.toString();
+      descriptionController.text = item.description;
+      _selectedDate = item.date;
+      dropdownValue = item.category;
+      isSwitched = item.received;
+  }
+  }
+  
+  
+  
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -93,22 +112,13 @@ class _ValueTransactionPageState extends State<ValueTransactionPage> {
     ),
   ];
   //var dropdownValue = listIncome.first;
-
-
+  
+  
   @override
   Widget build(BuildContext context) {
     ColorScheme colorContext = Theme.of(context).colorScheme;
-    var item = Get.arguments;
-    if(item != null){
-      log('valor transavction uid ${item.uid}');
-      selected = {item.type};
-      valueController.text = item.value.toString();
-      descriptionController.text = item.description;
-      _selectedDate = item.date;
-      dropdownValue = item.category;
-      isSwitched = item.received;
-      
-    }
+    //var item = Get.arguments;
+    
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
@@ -121,16 +131,16 @@ class _ValueTransactionPageState extends State<ValueTransactionPage> {
               children: [
                 Center(
                   child: SegmentedButton(
-                    style: ButtonStyle(backgroundColor: 
-                      WidgetStateProperty.resolveWith<Color>(
-   (Set<WidgetState> states) {
-      if (states.contains(WidgetState.selected)){
-        return AppColors.asparagus;
-      }
-      return colorContext.secondary;
-      //return Colors.red;
-    },
- ),
+                    style: ButtonStyle(
+                      backgroundColor: WidgetStateProperty.resolveWith<Color>(
+                        (Set<WidgetState> states) {
+                          if (states.contains(WidgetState.selected)) {
+                            return AppColors.asparagus;
+                          }
+                          return colorContext.secondary;
+                          //return Colors.red;
+                        },
+                      ),
                     ),
                     segments: const [
                       ButtonSegment(
@@ -145,10 +155,9 @@ class _ValueTransactionPageState extends State<ValueTransactionPage> {
                     selected: selected,
                     onSelectionChanged: (Set<TransactionType> newS) {
                       selected = newS;
-                      dropdownValue = null/* selected.first == TransactionType.expense ? CategoryType.house : CategoryType.work */;
-                      setState(() {
-                        
-                      });
+                      dropdownValue =
+                          null /* selected.first == TransactionType.expense ? CategoryType.house : CategoryType.work */;
+                      setState(() {});
                     },
                   ),
                 ),
@@ -179,7 +188,7 @@ class _ValueTransactionPageState extends State<ValueTransactionPage> {
                   onTapOutside: (value) => FocusScope.of(context).unfocus(),
                   style: TextStyle(color: colorContext.tertiary, fontSize: 18),
                   decoration: InputDecoration(
-                    //constraints: const BoxConstraints(maxWidth: 200, maxHeight: 100),
+                      //constraints: const BoxConstraints(maxWidth: 200, maxHeight: 100),
                       isDense: true,
                       hintText: _selectedDate == null
                           ? 'Data'
@@ -242,23 +251,23 @@ class _ValueTransactionPageState extends State<ValueTransactionPage> {
                   height: 20,
                 ),
                 PrimaryButton(
-                    text: 'Salvar', margin: EdgeInsets.zero, function: () async {
+                    text: 'Salvar',
+                    margin: EdgeInsets.zero,
+                    function: () async {
                       var transaction = TransactionFinanceiro(
-                      uid: item != null ? item.uid : '',
-                      type: selected.first, 
-                      value: num.parse(valueController.text), 
-                      description: descriptionController.text, 
-                      category: dropdownValue, 
-                      date: _selectedDate!, 
-                      received: isSwitched, 
-                      created_at: DateTime.now());
+                          uid: item != null ? item.uid : '',
+                          type: selected.first,
+                          value: num.parse(valueController.text),
+                          description: descriptionController.text,
+                          category: dropdownValue,
+                          date: _selectedDate!,
+                          received: isSwitched,
+                          created_at: DateTime.now());
 
-                      if(item != null){
+                      if (item != null) {
                         controller.editValue(transaction);
                       }
                       controller.saveValue(transaction);
-
-                      
                     }),
               ],
             ),
