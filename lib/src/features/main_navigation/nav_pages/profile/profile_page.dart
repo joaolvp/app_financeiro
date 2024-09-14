@@ -14,159 +14,178 @@ class ProfilePage extends GetView<ProfileController> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
-              width: Get.width * 0.65,
+              width: Get.width,
               child: Obx(() {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    controller.photoUser.value != ''
-                        ? CircleAvatar(
-                            radius: Get.height * 0.1,
-                            backgroundImage:
-                                NetworkImage(controller.photoUser.value))
-                        : CircleAvatar(
-                            radius: Get.height * 0.1,
-                            child: Icon(
-                              Icons.person,
-                              size: Get.height * 0.07,
+                return Padding(
+                  padding: const EdgeInsets.all(30),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Stack(
+                        children: [
+                          CircleAvatar(
+                              radius: Get.height * 0.1,
+                              backgroundImage: const NetworkImage(
+                                  'https://i.pinimg.com/1200x/a3/96/63/a3966351deb43da383db28f854e2f6b3.jpg')),
+                          const Positioned(
+                            //top: 120,
+                            bottom: 0,
+                            right: 0,
+                            child: CircleAvatar(
+                              maxRadius: 20,
+                              backgroundColor: AppColors.asparagus,
+                              child: Icon(Icons.edit)
                             ),
-                          ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    Text(
-                      controller.nameUser.value,
-                      style: AppTextStyles.mediumText18,
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      controller.emailUser.value,
-                      style: AppTextStyles.mediumText16,
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    Visibility(
+                          )
+                        ],
+                      ),
+                      /* controller.photoUser.value != ''
+                          ? CircleAvatar(
+                              radius: Get.height * 0.1,
+                              backgroundImage:
+                                  NetworkImage('https://i.pinimg.com/1200x/a3/96/63/a3966351deb43da383db28f854e2f6b3.jpg'))
+                          : CircleAvatar(
+                              radius: Get.height * 0.1,
+                              backgroundImage: NetworkImage('https://i.pinimg.com/1200x/a3/96/63/a3966351deb43da383db28f854e2f6b3.jpg'),
+                              /* child: Icon(
+                                Icons.person,
+                                size: Get.height * 0.07,
+                              ), */
+                            ), */
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      Text(
+                        controller.nameUser.value,
+                        style: AppTextStyles.mediumText18,
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        controller.emailUser.value,
+                        style: AppTextStyles.mediumText16,
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Visibility(
                         visible: controller.providerIdUser.value == 'password',
                         child: Column(
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                InkWell(
-                                  onTap: () {},
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      const Icon(
-                                        Icons.email,
-                                        //color: AppColors.chiliRed,
-                                      ),
-                                      const SizedBox(
-                                        width: 15,
-                                      ),
-                                      Text(
-                                        'Alterar e-mail',
-                                        style: AppTextStyles
-                                            .mediumText16 /* .copyWith(color: AppColors.chiliRed) */,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
+                            ListTile(
+                              contentPadding: EdgeInsets.zero,
+                              leading: Container(
+                                  height: 40,
+                                  width: 40,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(50),
+                                      color:
+                                          AppColors.asparagus.withOpacity(0.2)),
+                                  child: const Icon(
+                                    Icons.email,
+                                    color: AppColors.asparagus,
+                                  )),
+                              title: const Text(
+                                'Alterar e-mail', /* style: TextStyle(color: AppColors.chiliRed), */
+                              ),
+                              trailing: Container(
+                                  height: 35,
+                                  width: 35,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(50),
+                                      color: AppColors.grey.withOpacity(0.2)),
+                                  child: const Icon(
+                                    Icons.chevron_right,
+                                    color: AppColors.grey,
+                                  )),
                             ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                InkWell(
-                                  onTap: () {},
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      const Icon(
-                                        Icons.person,
-                                        //color: AppColors.chiliRed,
-                                      ),
-                                      const SizedBox(
-                                        width: 15,
-                                      ),
-                                      Text(
-                                        'Alterar nome',
-                                        style: AppTextStyles
-                                            .mediumText16 /* .copyWith(color: AppColors.chiliRed) */,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 15,
+                            ListTile(
+                              contentPadding: EdgeInsets.zero,
+                              leading: Container(
+                                  height: 40,
+                                  width: 40,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(50),
+                                      color:
+                                          AppColors.asparagus.withOpacity(0.2)),
+                                  child: const Icon(
+                                    Icons.person,
+                                    color: AppColors.asparagus,
+                                  )),
+                              title: const Text(
+                                'Alterar nome', /* style: TextStyle(color: AppColors.chiliRed), */
+                              ),
+                              trailing: Container(
+                                  height: 35,
+                                  width: 35,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(50),
+                                      color: AppColors.grey.withOpacity(0.2)),
+                                  child: const Icon(
+                                    Icons.chevron_right,
+                                    color: AppColors.grey,
+                                  )),
                             ),
                           ],
-                        )),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        InkWell(
-                          onTap: () {},
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const Icon(
-                                Icons.delete,
-                                //color: AppColors.chiliRed,
-                              ),
-                              const SizedBox(
-                                width: 15,
-                              ),
-                              Text(
-                                'Deletar conta',
-                                style: AppTextStyles
-                                    .mediumText16 /* .copyWith(color: AppColors.chiliRed) */,
-                              ),
-                            ],
-                          ),
                         ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        InkWell(
-                          onTap: () => controller.logout(),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const Icon(
-                                Icons.logout,
-                                //color: AppColors.chiliRed,
-                              ),
-                              const SizedBox(
-                                width: 15,
-                              ),
-                              Text('Encerrar sessão',
-                                  style: AppTextStyles.mediumText16
-                                  //.copyWith(color: AppColors.chiliRed),
-                                  ),
-                            ],
-                          ),
+                      ),
+                      ListTile(
+                        contentPadding: EdgeInsets.zero,
+                        leading: Container(
+                            height: 40,
+                            width: 40,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                color: AppColors.asparagus.withOpacity(0.2)),
+                            child: const Icon(
+                              Icons.delete,
+                              color: AppColors.asparagus,
+                            )),
+                        title: const Text(
+                          'Deletar conta', /* style: TextStyle(color: AppColors.chiliRed), */
                         ),
-                      ],
-                    ),
-                  ],
+                        trailing: Container(
+                            height: 35,
+                            width: 35,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                color: AppColors.grey.withOpacity(0.2)),
+                            child: const Icon(
+                              Icons.chevron_right,
+                              color: AppColors.grey,
+                            )),
+                      ),
+                      ListTile(
+                        onTap: () => controller.logout(),
+                        contentPadding: EdgeInsets.zero,
+                        leading: Container(
+                            height: 40,
+                            width: 40,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                color: AppColors.asparagus.withOpacity(0.2)),
+                            child: const Icon(
+                              Icons.logout,
+                              color: AppColors.asparagus,
+                            )),
+                        title: const Text(
+                          'Encerrar sessão',
+                          style: TextStyle(color: AppColors.chiliRed),
+                        ),
+                        trailing: Container(
+                            height: 35,
+                            width: 35,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                color: AppColors.grey.withOpacity(0.2)),
+                            child: const Icon(
+                              Icons.chevron_right,
+                              color: AppColors.grey,
+                            )),
+                      ),
+                    ],
+                  ),
                 );
               })),
         ],

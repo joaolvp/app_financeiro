@@ -1,5 +1,6 @@
 import 'package:app_financeiro/src/common/application/bindings/application_bindings.dart';
 import 'package:app_financeiro/src/common/constants/app_theme_data.dart';
+import 'package:app_financeiro/src/features/auth/forgot_password/forgot_password_module.dart';
 import 'package:app_financeiro/src/features/auth/login/login_module.dart';
 import 'package:app_financeiro/src/features/auth/register/register_module.dart';
 import 'package:app_financeiro/src/features/main_navigation/main_navigation_module.dart';
@@ -22,12 +23,14 @@ class App extends StatelessWidget {
     );
     return GetMaterialApp(
       localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate
       ],
       supportedLocales: const [
+        Locale('pt', 'BR'),
         Locale('en', 'US'), // Inglês
-        Locale('pt', 'BR'), // Português do Brasil
+         // Português do Brasil
       ],
       locale: const Locale('pt', 'BR'),
       debugShowCheckedModeBanner: false,
@@ -40,6 +43,7 @@ class App extends StatelessWidget {
         ...SplashModule().routers,
         ...LoginModule().routers,
         ...RegisterModule().routers,
+        ...ForgotPasswordModule().routers,
         ...MainNavigationModule().routers,
         ...ValueTransactionModule().routers,
         

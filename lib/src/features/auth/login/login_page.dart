@@ -101,7 +101,16 @@ class _LoginPageState extends State<LoginPage> {
                           callback: () => controller.loginGoogle(),
                         ),
                         SizedBox(
-                          height: Get.height * 0.01,
+                          height: Get.height * 0.02,
+                        ),
+                         Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            InkWell(
+                              onTap: () => Get.toNamed(Routes.forgotPassword),
+                              child: Text('Esqueceu a senha?', style: AppTextStyles.inputLabelText.copyWith(color: AppColors.asparagus),),
+                            )
+                          ],
                         ),
                         TextButton(
                           onPressed: () => Get.toNamed(Routes.register),

@@ -5,7 +5,6 @@ import 'package:app_financeiro/src/common/ui/dialog/dialog_mixin.dart';
 import 'package:app_financeiro/src/common/ui/loader/loader_mixin.dart';
 import 'package:app_financeiro/src/model/transaction_financeiro.dart';
 import 'package:app_financeiro/src/services/transaction/transaction_service.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ValueTransactionController extends GetxController with LoaderMixin, DialogMixin {

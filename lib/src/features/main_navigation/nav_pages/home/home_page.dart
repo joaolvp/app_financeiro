@@ -4,6 +4,7 @@ import 'package:app_financeiro/src/common/constants/app_colors.dart';
 import 'package:app_financeiro/src/common/constants/app_text_styles.dart';
 import 'package:app_financeiro/src/common/constants/routes.dart';
 import 'package:app_financeiro/src/model/transaction_financeiro.dart';
+import 'package:flutter/rendering.dart';
 
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -65,115 +66,127 @@ class HomePage extends GetView<HomeController> {
           style: AppTextStyles.smallText13,
         ),
         trailing: Text(
-          'R\$ ${item.value.toString()}',
+          NumberFormat.currency(locale: 'pt_BR', symbol: 'R\$').format(item.value),
           style: AppTextStyles.mediumText18.apply(color: color),
         ),
       );
     });
     return Obx(() {
       return Scaffold(
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        controller.nameUser.value.length > 1
-                            ? 'Bem-vindo, ${controller.nameUser}'
-                            : 'Bem-vindo',
-                        style: AppTextStyles.mediumText25,
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                            gradient: const LinearGradient(
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomCenter,
-                                colors: [
-                                  Colors.indigo,
-                                  AppColors.asparagus
-                                  
-                                ]),
-                            //color: AppColors.asparagus,
-                            borderRadius: BorderRadius.circular(10)),
-                        padding: const EdgeInsets.all(25),
-                        child: Column(
-                          children: [
-                            Text(
-                              'R\$ ${controller.saldoEmConta} ',
-                              style: AppTextStyles.mediumText30,
-                            ),
-                            Text(
-                              'Saldo Total ',
-                              style: AppTextStyles.mediumText18,
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            Row(
-                              children: [
-                                const Icon(
-                                  Icons.trending_up,
-                                  color: AppColors.asparagus,
-                                  size: 30,
-                                ),
-                                Text(
-                                  ' Receitas: ',
-                                  style: AppTextStyles.mediumText18,
-                                ),
-                                Text(
-                                  'R\$ ${controller.receitaTotal} ',
-                                  style: AppTextStyles.mediumText18,
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Row(
-                              //mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Icon(
-                                  Icons.trending_down,
-                                  color: AppColors.chiliRed,
-                                  size: 30,
-                                ),
-                                Text(
-                                  ' Despesas: ',
-                                  style: AppTextStyles.mediumText18,
-                                ),
-                                Text(
-                                  'R\$ ${controller.despesaTotal}',
-                                  style: AppTextStyles.mediumText18,
-                                ),
-                              ],
-                            )
-                          ],
+        body: NotificationListener<UserScrollNotification>(
+          onNotification: (notification){
+            if(notification.direction == ScrollDirection.forward){
+              controller.fabIsVisible.value = true;
+            }else if(notification.direction == ScrollDirection.reverse){
+              controller.fabIsVisible.value = false;
+            }
+            return true;
+          },
+          child: SafeArea(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          controller.nameUser.value.length > 1
+                              ? 'Bem-vindo, ${controller.nameUser}'
+                              : 'Bem-vindo',
+                          style: AppTextStyles.mediumText25,
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    'Transações recentes',
-                    style: AppTextStyles.mediumText18,
-                  ),
-                  ...listTransactions,
-                ],
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                              gradient: const LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomCenter,
+                                  colors: [
+                                    Colors.indigo,
+                                    AppColors.asparagus
+                                    
+                                  ]),
+                              //color: AppColors.asparagus,
+                              borderRadius: BorderRadius.circular(10)),
+                          padding: const EdgeInsets.all(25),
+                          child: Column(
+                            children: [
+                              Text(
+                                NumberFormat.currency(locale: 'pt_BR', symbol: 'R\$').format(controller.saldoEmConta.value),
+                                style: AppTextStyles.mediumText30,
+                              ),
+                              Text(
+                                'Saldo Total ',
+                                style: AppTextStyles.mediumText18,
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              Row(
+                                children: [
+                                  const Icon(
+                                    Icons.trending_up,
+                                    color: AppColors.asparagus,
+                                    size: 30,
+                                  ),
+                                  Text(
+                                    ' Receitas: ',
+                                    style: AppTextStyles.mediumText18,
+                                  ),
+                                  Text(
+                                    NumberFormat.currency(locale: 'pt_BR', symbol: 'R\$').format(controller.receitaTotal.value),
+                                    style: AppTextStyles.mediumText18,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              Row(
+                                //mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Icon(
+                                    Icons.trending_down,
+                                    color: AppColors.chiliRed,
+                                    size: 30,
+                                  ),
+                                  Text(
+                                    ' Despesas: ',
+                                    style: AppTextStyles.mediumText18,
+                                  ),
+                                  Text(
+                                    NumberFormat.currency(locale: 'pt_BR', symbol: 'R\$').format(controller.despesaTotal.value),
+                                    style: AppTextStyles.mediumText18,
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      'Transações recentes',
+                      style: AppTextStyles.mediumText18,
+                    ),
+                    ...listTransactions,
+                  ],
+                ),
               ),
             ),
           ),
         ),
-        floatingActionButton: FloatingActionButton(
+        floatingActionButton: 
+        controller.fabIsVisible.value ?
+        FloatingActionButton(
           onPressed: () async {
             await Get.toNamed(Routes.valueTransaction);
             controller.onReady();
@@ -182,10 +195,14 @@ class HomePage extends GetView<HomeController> {
           child: const Icon(
             Icons.add,
             color: AppColors.lemonChiffon,
-          ),
-        ),
+          ) ,
+        
+        ) : null,
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       );
     });
   }
+
+  
+
 }

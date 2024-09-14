@@ -24,6 +24,10 @@ class HomeController extends GetxController with LoaderMixin, DialogMixin{
   Rx<num> receitaTotal = 0.obs;
   Rx<num> despesaTotal = 0.obs;
 
+  var fabIsVisible = true.obs;
+
+
+
   @override
   void onReady() async {
     super.onReady();
@@ -31,6 +35,7 @@ class HomeController extends GetxController with LoaderMixin, DialogMixin{
     dialogListenner(message);
     getHomeData();
   }
+  
 
   getHomeData()async{
     nameUser.value = FirebaseAuth.instance.currentUser!.displayName.toString().split(' ')[0];

@@ -10,4 +10,5 @@ class Routes {
   static const String valueTransaction = '/valueTransaction';
   static const String wallet = '/wallet';
   static const String profile = '/profile';
+  static const String forgotPassword = '/forgotPassword';
 }

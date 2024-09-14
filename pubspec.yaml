@@ -47,6 +47,8 @@ dependencies:
   brasil_fields: ^1.15.0
   intl: ^0.19.0
   fl_chart: ^0.69.0
+  carousel_slider: ^5.0.0
+  smooth_page_indicator: ^1.2.0+3
 
 
 dev_dependencies:
