@@ -4,18 +4,16 @@ App criado com objetivo de gerenciar finanças pessoais.
 
 ## Home
 
-![App Screenshot](assets/images/readme/Home.png)
+<img src="assets/images/readme/Home.png" alt="Home" width="300"/>
 
 
 ## Carteira
 
-![App Screenshot](assets/images/readme/Carteira.png)
+<img src="assets/images/readme/Carteira.png" alt="Carteira" width="300"/>
 
 ## Profile
 
-![App Screenshot](assets/images/readme/Profile.png)
-
-
+<img src="assets/images/readme/Profile.png" alt="Profile" width="300"/>
 
 
 ## 🔗 Contatos
