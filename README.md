@@ -1,16 +1,25 @@
-# app_financeiro
+# App Financeiro
 
-A new Flutter project.
+App criado com objetivo de gerenciar finanças pessoais.
 
-## Getting Started
+## Home
 
-This project is a starting point for a Flutter application.
+[Home.png](assets/images/readme/Home.png)
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Carteira
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+[Carteira.png](assets/images/readme/Carteira.png)
+
+## Profile
+
+[Profile.png](assets/images/readme/Profile.png)
+
+
+
+
+## 🔗 Contatos
+
+[![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/joaolvp)
+
+[![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jo%C3%A3o-lucas-viana-peruzzo-602035226)
